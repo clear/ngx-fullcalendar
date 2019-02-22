@@ -134,6 +134,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy, AfterViewChecke
   @Output() onEventResize: EventEmitter<any> = new EventEmitter();
   @Output() onDatesRender: EventEmitter<any> = new EventEmitter();
   @Output() onDatesDestroy: EventEmitter<any> = new EventEmitter();
+  @Output() onViewRender: EventEmitter<any> = new EventEmitter();
   @Output() onViewSkeletonRender: EventEmitter<any> = new EventEmitter();
   @Output() onViewSkeletonDestroy: EventEmitter<any> = new EventEmitter();
   @Output() onNavLinkDayClick: EventEmitter<any> = new EventEmitter();
@@ -215,6 +216,9 @@ export class FullCalendarComponent implements OnInit, OnDestroy, AfterViewChecke
       this.onDatesDestroy.emit({
         'info': info
       });
+    };
+    this.config.viewRender = (monthViewInfo) => {
+      this.onViewRender.emit(monthViewInfo);
     };
     this.config.viewSkeletonRender = (info) => {
       this.onViewSkeletonRender.emit({
