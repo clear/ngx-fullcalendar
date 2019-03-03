@@ -12,7 +12,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import {Calendar, Draggable, formatDate} from 'fullcalendar';
+import {Calendar, formatDate} from '@fullcalendar/core';
+import {Draggable} from '@fullcalendar/interaction';
 
 import {EventObject} from './event.object';
 import {FullCalendarOptions} from './fullcalendar-options';
@@ -22,7 +23,7 @@ import {ResourceObject} from './resource-object';
 
 const defaultConfig: FullCalendarOptions = {
   aspectRatio: 1.35,
-  defaultView: 'month',
+  defaultView: 'dayGridMonth',
   fixedWeekCount: true,
   showNonCurrentDates: true,
   allDaySlot: true,
@@ -118,6 +119,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy, AfterViewChecke
   @Input() allDayMaintainDuration: boolean;
   @Input() listDayFormat: string | Object;
   @Input() listDayAltFormat: string | Object;
+  @Input() plugins: Array<string>;
 
   // tslint:disable:no-output-on-prefix
   @Output() onDateClick: EventEmitter<any> = new EventEmitter();
@@ -385,6 +387,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy, AfterViewChecke
       allDayMaintainDuration: this.allDayMaintainDuration!,
       listDayFormat: this.listDayFormat!,
       listDayAltFormat: this.listDayAltFormat!,
+      plugins: this.plugins
       // tslint:enable:no-non-null-assertion
     };
 
